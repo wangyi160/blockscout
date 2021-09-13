@@ -1,6 +1,7 @@
 ## Current
 
 ### Features
+- [#4641](https://github.com/blockscout/blockscout/pull/4641) - Improve categorization of smart-contracts' methods
 - [#4655](https://github.com/blockscout/blockscout/pull/4655) - EIP-3091 support
 - [#4621](https://github.com/blockscout/blockscout/pull/4621) - Add beacon contract address slot for proxy
 - [#4625](https://github.com/blockscout/blockscout/pull/4625) - Contract address page: Add implementation link to the overview of proxy contracts
