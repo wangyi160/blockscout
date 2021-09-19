@@ -47,7 +47,17 @@
                       </svg>
                     </span>
                 <% end %>
-                <pre class="transaction-input-text pre-wrap" style="margin-bottom: 0px;"><code style="line-height: 25px;"><%= BlockScoutWeb.ABIEncodedValueView.value_html(type, value) %></code></pre>
+                <% text = BlockScoutWeb.ABIEncodedValueView.value_html(type, value) %>
+                <pre class="transaction-input-text pre-wrap" style="margin-bottom: 0px;">
+                  <code style="line-height: 25px;">
+                    <%= if String.length(text) > get_max_length() = length do%>
+                      
+                    <% else %>
+                      text
+                    <% end %>
+                  
+                  </code>
+                </pre>
               <% end %>
           </td>
         </tr>
