@@ -107,7 +107,7 @@ host    all             all             127.0.0.1/32            md5
 * sudo apt update
 * sudo apt install erlang
 
-## 4. 安装elixir 1.12.3
+### 4. 安装elixir 1.12.3
 
 * 下载 https://github.com/elixir-lang/elixir/releases/download/v1.12.3/Precompiled.zip
 
@@ -133,7 +133,7 @@ host    all             all             127.0.0.1/32            md5
 * cd apps/block_scout_web/assets; npm install && node_modules/webpack/bin/webpack.js --mode production; cd -
 * cd apps/explorer && npm install; cd -
 * mix phx.digest
-* cd apps/block_scout_web; mix phx.gen.cert blockscout blockscout.local; cd –
+* cd apps/block_scout_web; mix phx.gen.cert blockscout blockscout.local; cd -
 
 * 修改/etc/hosts， 加入 blockscout and blockscout.local 
 ```
