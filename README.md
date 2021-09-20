@@ -60,7 +60,7 @@ This project is licensed under the GNU General Public License v3.0. See the [LIC
 * sudo apt-get -y install build-essential libssl-dev
 * curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 
-修改~/.bashrc:
+* 修改~/.bashrc:
 ```
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -70,77 +70,78 @@ export NVM_DIR="$HOME/.nvm"
 
 ### 2. 安装postgresql-12
 
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
+* wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+* echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
 
-sudo apt update
-sudo apt -y install postgresql-12 postgresql-client-12
+* sudo apt update
+* sudo apt -y install postgresql-12 postgresql-client-12
 
-修改postgres密码的话，需要先取消密码
+* 修改postgres密码的话，需要先取消密码
 
-首先要修改/etc/postgresql/12/main/pg_hba.conf 中：
+* 首先要修改/etc/postgresql/12/main/pg_hba.conf 中：
 ```
 # "local" is for Unix domain socket connections only
 local   all             all                                     trust
 # IPv4 local connections:
 host    all             all             127.0.0.1/32            trust
 ```
-重新启动postgresql的service后，可以修改密码
-sudo systemctl start(stop) postgresql.service
-sudo su - postgres
-psql –h 127.0.0.1 –p 5434
-alter user postgres with passworld ‘wangyi’
+* 重新启动postgresql的service后，可以修改密码
+* sudo systemctl start(stop) postgresql.service
+* sudo su - postgres
+* psql –h 127.0.0.1 –p 5434
+* alter user postgres with passworld ‘wangyi’
 
-恢复修改/etc/postgresql/12/main/pg_hba.conf 中：
+* 恢复修改/etc/postgresql/12/main/pg_hba.conf 中：
 ```
 # "local" is for Unix domain socket connections only
 local   all             all                                     trust
 # IPv4 local connections:
 host    all             all             127.0.0.1/32            md5
 ```
+
 ### 3. 安装erlang 最新版24.0.5
 
-wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
-echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
+* wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
+* echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
 
-sudo apt update
-sudo apt install erlang
+* sudo apt update
+* sudo apt install erlang
 
 ## 4. 安装elixir 1.12.3
 
-下载 https://github.com/elixir-lang/elixir/releases/download/v1.12.3/Precompiled.zip
+* 下载 https://github.com/elixir-lang/elixir/releases/download/v1.12.3/Precompiled.zip
 
-mkdir –p /opt/elixir
-unzip Precompiled.zip –d /opt/elixir
+* mkdir –p /opt/elixir
+* unzip Precompiled.zip –d /opt/elixir
 
 ### 5. 正式编译安装
 
-git clone https://github.com/poanetwork/blockscout
-cd blockscout
+* git clone https://github.com/poanetwork/blockscout
+* cd blockscout
 
-export DATABASE_URL=postgresql://postgres:wangyi@localhost:5434/blockscout
-export SECRET_KEY_BASE=VTIB3uHDNbvrY0+60ZWgUoUBKDn9ppLR8MI4CpRz4/qLyEFs54ktJfaNT6Z221No
+* export DATABASE_URL=postgresql://postgres:wangyi@localhost:5434/blockscout
+* export SECRET_KEY_BASE=VTIB3uHDNbvrY0+60ZWgUoUBKDn9ppLR8MI4CpRz4/qLyEFs54ktJfaNT6Z221No
 
-mix phx.digest.clean
+* mix phx.digest.clean
 
-export ETHEREUM_JSONRPC_VARIANT=ganache
-export ETHEREUM_JSONRPC_HTTP_URL=http://localhost:8545
+* export ETHEREUM_JSONRPC_VARIANT=ganache
+* export ETHEREUM_JSONRPC_HTTP_URL=http://localhost:8545
 
-mix do deps.get, local.rebar --force, deps.compile, compile
-mix do ecto.create, ecto.migrate
+* mix do deps.get, local.rebar --force, deps.compile, compile
+* mix do ecto.create, ecto.migrate
 
-cd apps/block_scout_web/assets; npm install && node_modules/webpack/bin/webpack.js --mode production; cd -
-cd apps/explorer && npm install; cd -
-mix phx.digest
-cd apps/block_scout_web; mix phx.gen.cert blockscout blockscout.local; cd –
+* cd apps/block_scout_web/assets; npm install && node_modules/webpack/bin/webpack.js --mode production; cd -
+* cd apps/explorer && npm install; cd -
+* mix phx.digest
+* cd apps/block_scout_web; mix phx.gen.cert blockscout blockscout.local; cd –
 
-修改/etc/hosts， 加入 blockscout and blockscout.local 
+* 修改/etc/hosts， 加入 blockscout and blockscout.local 
 ```
 127.0.0.1       localhost blockscout blockscout.local
 255.255.255.255 broadcasthost
 ::1             localhost blockscout blockscout.local
 ```
-mix phx.server
+* mix phx.server
 
 
 
