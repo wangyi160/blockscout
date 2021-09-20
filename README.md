@@ -56,9 +56,9 @@ This project is licensed under the GNU General Public License v3.0. See the [LIC
 
 ### 1．升级node到14.17.6
 
-sudo apt-get update -y
-sudo apt-get -y install build-essential libssl-dev
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+* sudo apt-get update -y
+* sudo apt-get -y install build-essential libssl-dev
+* curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 
 修改~/.bashrc:
 ```
@@ -66,7 +66,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
 ```
-nvm install 14.17.6
+* nvm install 14.17.6
 
 ### 2. 安装postgresql-12
 
