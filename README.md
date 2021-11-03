@@ -143,5 +143,14 @@ host    all             all             127.0.0.1/32            md5
 ```
 * mix phx.server
 
+### 6. 重新启动
 
+* export DATABASE_URL=postgresql://postgres:wangyi@localhost:5434/blockscout
+* export SECRET_KEY_BASE=VTIB3uHDNbvrY0+60ZWgUoUBKDn9ppLR8MI4CpRz4/qLyEFs54ktJfaNT6Z221No
+
+* export ETHEREUM_JSONRPC_VARIANT=ganache
+* export ETHEREUM_JSONRPC_HTTP_URL=http://localhost:8545
+
+* mix do ecto.drop, ecto.create, ecto.migrate
+* mix phx.server
 
