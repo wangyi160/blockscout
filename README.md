@@ -124,6 +124,7 @@ host    all             all             127.0.0.1/32            md5
 
 * export ETHEREUM_JSONRPC_VARIANT=ganache
 * export ETHEREUM_JSONRPC_HTTP_URL=http://localhost:8545
+* export ETHEREUM_JSONRPC_WS_URL=ws://localhost:8546
 
 * HEX_HTTP_CONCURRENCY=1 HEX_HTTP_TIMEOUT=120 mix do deps.get, local.rebar --force, deps.compile, compile
 * mix do ecto.create, ecto.migrate
@@ -150,6 +151,7 @@ host    all             all             127.0.0.1/32            md5
 
 * export ETHEREUM_JSONRPC_VARIANT=ganache
 * export ETHEREUM_JSONRPC_HTTP_URL=http://localhost:8545
+* export ETHEREUM_JSONRPC_WS_URL=ws://localhost:8546
 
 * mix do ecto.drop, ecto.create, ecto.migrate
 * mix phx.server
