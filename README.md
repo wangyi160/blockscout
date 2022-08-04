@@ -122,13 +122,13 @@ host    all             all             127.0.0.1/32            md5
 * export DATABASE_URL=postgresql://postgres:wangyi@localhost:5434/blockscout
 * export SECRET_KEY_BASE=VTIB3uHDNbvrY0+60ZWgUoUBKDn9ppLR8MI4CpRz4/qLyEFs54ktJfaNT6Z221No
 
-* mix phx.digest.clean
-
 * export ETHEREUM_JSONRPC_VARIANT=ganache
 * export ETHEREUM_JSONRPC_HTTP_URL=http://localhost:8545
 
-* mix do deps.get, local.rebar --force, deps.compile, compile
+* HEX_HTTP_CONCURRENCY=1 HEX_HTTP_TIMEOUT=120 mix do deps.get, local.rebar --force, deps.compile, compile
 * mix do ecto.create, ecto.migrate
+
+* mix phx.digest.clean
 
 * cd apps/block_scout_web/assets; npm install && node_modules/webpack/bin/webpack.js --mode production; cd -
 * cd apps/explorer && npm install; cd -
